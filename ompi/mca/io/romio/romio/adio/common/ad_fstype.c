@@ -529,6 +529,9 @@ static void ADIO_FileSysType_prefix(char *filename, int *fstype, int *error_code
 		    !strncmp(filename, "ZOIDFS:", 7)) {
 	    *fstype = ADIO_ZOIDFS;
     } 
+    else if (!strncmp(filename, "ceph:", 5) || !strncmp(filename, "CEPH:", 5)) {
+	*fstype = ADIO_CEPH;
+    }
     else if (!strncmp(filename, "testfs:", 7) 
 	     || !strncmp(filename, "TESTFS:", 7))
     {
@@ -829,6 +832,16 @@ void ADIO_ResolveFileType(MPI_Comm comm, char *filename, int *fstype,
 	return;
 #else
 	*ops = &ADIO_ZOIDFS_operations;
+#endif
+    }
+    if (file_system == ADIO_CEPH) {
+#ifndef ROMIO_CEPH
+	*error_code = MPIO_Err_create_code(MPI_SUCCESS, MPIR_ERR_RECOVERABLE,
+					   myname, __LINE__, MPI_ERR_IO,
+					   "**iofstypeunsupported", 0);
+	return;
+#else
+    *ops = &ADIO_CEPH_operations;
 #endif
     }
     *error_code = MPI_SUCCESS;

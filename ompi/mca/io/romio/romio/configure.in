@@ -144,7 +144,7 @@ MPIO_REQ_REAL_POBJECTS="_iotest.o _iowait.o _iowaitall.o _iowaitany.o _iotestall
 #
 have_aio=no
 #
-known_filesystems="nfs ufs pfs pvfs pvfs2 testfs xfs panfs gridftp lustre bgl bglockless zoidfs"
+known_filesystems="nfs ufs pfs pvfs pvfs2 testfs xfs panfs gridftp lustre bgl bglockless zoidfs ceph"
 # Open MPI: added "open_mpi_mpi"
 known_mpi_impls="mpich2_mpi mpich_mpi sgi_mpi hp_mpi cray_mpi lam_mpi open_mpi_mpi"
 #
@@ -1217,6 +1217,10 @@ if test -n "$file_system_lustre"; then
     )
 fi
 
+if test -n "$file_system_ceph"; then
+    AC_DEFINE(ROMIO_CEPH,1,[Define for ROMIO with CEPH])
+fi
+
 if test -n "$file_system_xfs"; then
     AC_DEFINE(ROMIO_XFS,1,[Define for ROMIO with XFS])
     # Check for memalign value
@@ -2126,7 +2130,7 @@ AM_PROG_LIBTOOL
 
 # Open MPI: setup the AM_CONDITIONALs to build the different adio devices
  m4_foreach([my_fs], 
-  [bgl, bglockless, gridftp, lustre, nfs, panfs, pfs, pvfs, pvfs2, sfs, testfs, ufs, xfs, zoidfs],
+  [bgl, bglockless, gridftp, lustre, nfs, panfs, pfs, pvfs, pvfs2, sfs, testfs, ufs, xfs, zoidfs, ceph],
   [AM_CONDITIONAL(BUILD_[]AS_TR_CPP(my_fs), [test -n "$file_system_]my_fs["])])
 
 echo "setting CC to $CC"
@@ -2263,6 +2267,7 @@ AC_CONFIG_FILES([
     adio/ad_ufs/Makefile
     adio/ad_xfs/Makefile
     adio/ad_zoidfs/Makefile
+    adio/ad_ceph/Makefile
     adio/common/Makefile
     adio/include/Makefile
 

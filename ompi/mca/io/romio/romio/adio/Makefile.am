@@ -160,15 +160,23 @@ ZOID_DIR =
 ZOID_LIB =
 endif
 
+if BUILD_CEPH
+CEPH_DIR = ad_ceph
+CEPH_LIB = ad_ceph/libadio_ceph.la
+else
+CEPH_DIR =
+CEPH_LIB =
+endif
+
 SUBDIRS = common include \
 	$(BG_DIR) $(BGLOCKLESS_DIR) \
 	$(GRIDFTP_DIR) $(LUSTRE_DIR) $(NFS_DIR) $(NTFS_DIR) $(PANFS_DIR) \
 	$(PFS_DIR) $(PVFS_DIR) $(PVFS2_DIR) $(SFS_DIR) \
-	$(TESTFS_DIR) $(UFS_DIR) $(XFS_DIR) $(ZOID_DIR)
+	$(TESTFS_DIR) $(UFS_DIR) $(XFS_DIR) $(ZOID_DIR) $(CEPH_DIR)
 DIST_SUBDIRS = common include \
         ad_bgl ad_bglockless ad_gridftp ad_lustre ad_nfs ad_ntfs \
         ad_panfs ad_pfs ad_pvfs	ad_pvfs2 ad_sfs ad_testfs ad_ufs \
-        ad_xfs ad_zoidfs
+        ad_xfs ad_zoidfs ad_ceph
 
 # Library
 noinst_LTLIBRARIES = libadio.la
@@ -178,4 +186,4 @@ libadio_la_LIBADD = \
 	$(BG_LIB) $(BGLOCKLESS_LIB) \
         $(GRIDFTP_LIB) $(LUSTRE_LIB) $(NFS_LIB) $(NTFS_LIB) $(PANFS_LIB) \
         $(PFS_LIB) $(PVFS_LIB) $(PVFS2_LIB) $(SFS_LIB) \
-        $(TESTFS_LIB) $(UFS_LIB) $(XFS_LIB) $(ZOID_LIB)
+        $(TESTFS_LIB) $(UFS_LIB) $(XFS_LIB) $(ZOID_LIB) $(CEPH_LIB)

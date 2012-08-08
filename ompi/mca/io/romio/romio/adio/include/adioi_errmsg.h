@@ -42,7 +42,7 @@ MPI_ERR_REQUEST
 
 MPI_ERR_IO
     MPIR_ERR_ETYPE_FRACTIONAL "Only an integral number of etypes can be accessed"
-    MPIR_ERR_NO_FSTYPE "Can't determine the file-system type. Check the filename/path you provided and try again. Otherwise, prefix the filename with a string to indicate the type of file sytem (piofs:, pfs:, nfs:, ufs:, hfs:, xfs:, sfs:, pvfs:, panfs: ftp: gsiftp:)"
+    MPIR_ERR_NO_FSTYPE "Can't determine the file-system type. Check the filename/path you provided and try again. Otherwise, prefix the filename with a string to indicate the type of file sytem (piofs:, pfs:, nfs:, ufs:, hfs:, xfs:, sfs:, pvfs:, ceph:, panfs: ftp: gsiftp:)"
     MPIR_ERR_NO_PFS "ROMIO has not been configured to use the PFS file system"
     MPIR_ERR_NO_PIOFS "ROMIO has not been configured to use the PIOFS file system"
     MPIR_ERR_NO_UFS "ROMIO has not been configured to use the UFS file system"
@@ -52,6 +52,7 @@ MPI_ERR_IO
     MPIR_ERR_NO_SFS "ROMIO has not been configured to use the SFS file system"
     MPIR_ERR_NO_PVFS "ROMIO has not been configured to use the PVFS file system"
     MPIR_ERR_NO_PANFS "ROMIO has not been configured to use the PANFS file system"
+    MPIR_ERR_NO_CEPH "ROMIO has not been configured to use the CEPH file system"
     MPIR_ERR_MULTIPLE_SPLIT_COLL "Only one active split collective I/O operation allowed per file handle"
     MPIR_ERR_NO_SPLIT_COLL "No previous split collective begin"
     MPIR_ERR_ASYNC_OUTSTANDING "There are outstanding nonblocking I/O operations on this file"

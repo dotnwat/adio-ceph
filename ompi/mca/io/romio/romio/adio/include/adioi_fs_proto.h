@@ -94,4 +94,9 @@ extern struct ADIOI_Fns_struct ADIO_GRIDFTP_operations;
 extern struct ADIOI_Fns_struct ADIO_ZOIDFS_operations;
 #endif
 
+#ifdef ROMIO_CEPH
+/* prototypes are in adio/ad_ceph/ad_ceph.h */
+extern struct ADIOI_Fns_struct ADIO_CEPH_operations;
+#endif
+
 #endif
